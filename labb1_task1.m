@@ -64,7 +64,10 @@ ylabel('Fox pop.', Interpreter='latex')
 hold off
 
 figure(5)
-plot3(Y_out5(:,1), Y_out5(:,2), Y_out5(:,3));
-xlabel('Rabbit pop.', Interpreter='latex')
-ylabel('Fox pop.', Interpreter='latex')
-zlabel('Bear pop.', Interpreter='latex')
+hold on
+plot(T_out5, Y_out5);
+xlabel('Time (t)', Interpreter='latex')
+ylabel('Populations', Interpreter='latex')
+legend('Rabbit pop.', 'Fox pop.', 'Bear pop.', Interpreter='latex')
+hold off
+
