@@ -31,6 +31,10 @@ contour(x, y, xdot, [0 0], 'r-');
 contour(x, y, ydot, [0 0], 'g-');
 legend('Quiver plot', 'xcline', 'ycline')
 
+[peaks, index] = findpeaks(y_out(:,1));
+
+T = (t_out(index(end)) - t_out(index(end-1)));
+
 
 
 
