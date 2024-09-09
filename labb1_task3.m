@@ -45,6 +45,22 @@ plot(t_out, pert*exp(mf.p1*t_out))
 hold off
 
 X01 = [9, 15, 47]; X02 = [-9, -15, 47]; X03 = [6, 14, 22];
-X1 = fsolve(fun2, X01);
-X2 = fsolve(fun2, X02);
+fopts = optimset('Display','off');
+X1 = fsolve(fun2, X01, fopts);
+X2 = fsolve(fun2, X02, fopts);
+
+syms x1 x2 x3;
+
+sym_fun = [
+    sigma*(x2 - x1);
+    x1*(rho - x3) - x2;
+    x1*x2 - beta*x3;
+];
+
+Jac = jacobian(sym_fun, [x1, x2, x3]); 
+Jac_fun = matlabFunction(Jac, 'Vars', {x1, x2, x3});
+Jac = @(t, x) Jac_fun(x(1), x(2), x(3));
+
+jac_eigs = eig(Jac(0, X1));
+
 
