@@ -9,6 +9,12 @@ fun = @(t, x) [
     x(1)*x(2) - beta*x(3);
 ];
 
+fun2 = @(x) [
+    sigma*(x(2) - x(1));
+    x(1)*(rho - x(3)) - x(2);
+    x(1)*x(2) - beta*x(3);
+];
+
 rel_tol = 1e-6;
 abs_tol = 1e-4;
 opts = odeset('RelTol',rel_tol, 'AbsTol',abs_tol);
@@ -26,17 +32,19 @@ zlabel('$x_3$', Interpreter='latex')
 hold off
 view(3)
 
-
 len_y_out = length(y_out(:,1));
 abs_diff = vecnorm(y_out2(1:len_y_out,:) - y_out, 2, 2);
-expModel = fittype('pert * exp(lambda * x)', 'independent', 'x', 'coefficients', {'lambda'});
-fitResult = fit(t_out, abs_diff, expModel, 'problem', pert);
 
-est_lambda = fitResult.lambda;
+logdiff = log(abs_diff/pert);
 
+mf = fit(t_out(1650:5100), logdiff(1650:5100), 'poly1');
 
 figure(2)
 hold on
-plot(t_out, abs_diff)
-plot(t_out, pert*exp(est_lambda*t_out))
+plot(t_out, pert*exp(mf.p1*t_out))
 hold off
+
+X01 = [9, 15, 47]; X02 = [-9, -15, 47]; X03 = [6, 14, 22];
+X1 = fsolve(fun2, X01);
+X2 = fsolve(fun2, X02);
+
