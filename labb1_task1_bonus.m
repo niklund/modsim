@@ -93,5 +93,5 @@ end
 prob = sum(probvec)/50;
 figure(3)
 plot(Fc_vec(:,1), prob)
-xlabel('Fox pop.', Interpreter='latex')
+xlabel('Initial fox pop.', Interpreter='latex')
 ylabel('Probability of fox pop dying', Interpreter='latex')

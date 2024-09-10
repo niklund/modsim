@@ -43,9 +43,10 @@ hold on
 xlabel('Rabbit pop.', Interpreter='latex')
 ylabel('Fox pop.', Interpreter='latex')
 plot(Y_out1(:,1), Y_out1(:,2));
-plot(Y_out2(:,1), Y_out2(:,2));
-plot(Y_out3(:,1), Y_out3(:,2));
-legend('$R_0=600,F_0=400$', '$R_0=600,F_0=700$', '$R_0=100,F_0=100$', Interpreter='latex');
+% plot(Y_out2(:,1), Y_out2(:,2));
+% plot(Y_out3(:,1), Y_out3(:,2));
+% legend('$R_0=600,F_0=400$', '$R_0=600,F_0=700$', '$R_0=100,F_0=100$', Interpreter='latex');
+legend('Stochastic model', 'Continuous model', Interpreter='latex')
 hold off
 
 figure(3)

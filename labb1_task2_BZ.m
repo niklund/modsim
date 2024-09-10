@@ -1,5 +1,5 @@
 alpha = 77.27; beta = 8.375*10^(-6); gamma = 1.161;
-tspan = [0, 40];
+tspan = [0, 200];
 x0 = [1, 2, 3];
 
 fun = @(t, x) [
@@ -58,6 +58,7 @@ zlabel('Concentration $x_3$', Interpreter='latex')
 figure(2)
 hold on
 yyaxis left;
+ylabel('Concentrations', Interpreter='latex')
 plot(t_out15s, y_out15s(:,1))
 plot(t_out15s, y_out15s(:,2))
 plot(t_out15s, y_out15s(:,3))
@@ -68,6 +69,7 @@ plot(t_out23s, dt23s)
 plot(t_out15s, dt15s)
 legend('$x_1$', '$x_2$', '$x_3$', '$dt_{45}$', '$dt_{113}$', '$dt_{23s}$', '$dt_{15s}$', Interpreter='latex')
 xlabel('Time (t)', Interpreter='latex')
+ylabel('Timesteps (dt)', Interpreter='latex')
 hold off
 
 SOL45 = ode45(fun, tspan, x0, opts1);
@@ -82,3 +84,6 @@ end
 
 figure(3)
 plot(dt45, cond_vec)
+xlabel('Timesteps (dt)', Interpreter='latex')
+ylabel('Condition number', Interpreter='latex')
+

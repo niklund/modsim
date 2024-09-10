@@ -41,6 +41,9 @@ mf = fit(t_out(1650:5100), logdiff(1650:5100), 'poly1');
 
 figure(2)
 hold on
+xlim([0, 20])
+xlabel('Time (t)', Interpreter='latex');
+ylabel('Deviation $||\delta||$', Interpreter='latex');
 plot(t_out, pert*exp(mf.p1*t_out))
 hold off
 

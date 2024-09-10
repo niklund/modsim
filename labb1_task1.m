@@ -9,7 +9,7 @@ r_grass = 5 * f0; r_sat = 5 * f0;
 
 y0 = [R0_1, R0_2, R0_3; F0_1, F0_2, F0_3];
 y0_mod = [r0, f0];
-t = [0,200];
+t = [0,300];
 tau = t/(1/a);
 
 rel_tol = 1e-6;
@@ -65,9 +65,10 @@ hold off
 
 figure(5)
 hold on
-plot(T_out5, Y_out5);
-xlabel('Time (t)', Interpreter='latex')
-ylabel('Populations', Interpreter='latex')
+plot3(Y_out5(:,1), Y_out5(:,2), Y_out5(:,3));
+xlabel('Rabbit pop.', Interpreter='latex')
+ylabel('Fox pop.', Interpreter='latex')
+zlabel('Bear pop.', Interpreter='latex')
 legend('Rabbit pop.', 'Fox pop.', 'Bear pop.', Interpreter='latex')
 hold off
-
+view(3)

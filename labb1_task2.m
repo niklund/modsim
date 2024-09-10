@@ -2,7 +2,7 @@
 a = 1; b = 2;
 fun = @(t, x) [1 - (b + 1)*x(1) + a*x(1)^(2)*x(2); b*x(1) - a*x(1)^(2)*x(2)];
 x0 = 1; y0 = 1;
-tspan = [0,1000];
+tspan = [0,100];
 
 rel_tol = 1e-6;
 abs_tol = 1e-4;
@@ -12,7 +12,7 @@ opts = odeset('RelTol',rel_tol, 'AbsTol',abs_tol);
 figure(1)
 plot(t_out, y_out);
 xlabel('Time (t)', interpreter = 'latex')
-ylabel('Quantity of chemical (n)', interpreter = 'latex')
+ylabel('Concentration', interpreter = 'latex')
 legend('Chemical A', 'Chemical B', interpreter = 'latex')
 
 [x,y] = meshgrid(0:.08:3, 0:.08:3);
@@ -29,7 +29,10 @@ quiver(x,y, xdot, ydot)
 
 contour(x, y, xdot, [0 0], 'r-');
 contour(x, y, ydot, [0 0], 'g-');
-legend('Quiver plot', 'xcline', 'ycline')
+xlabel('x', Interpreter='latex')
+ylabel('y', Interpreter='latex')
+
+legend('Quiver plot', 'xcline', 'ycline', Interpreter='latex')
 
 [peaks, index] = findpeaks(y_out(:,1));
 
